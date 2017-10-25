@@ -1,13 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 sec-cha
 
   form(action="/" method="post")
-    input(type="text" name="message_content")
-    input(type="submit" value="送信")
+    input(type="hidden" name="name"    value="#{name}")
+    input(type="hidden" name="is_male" value="#{is_male}")
+    input(type="text"   name="content")
+    input(type="submit" value="送信/更新")
   
-  ul
-    each message in messages 
-      li=message
+  each message in messages 
+    p(class="#{message.is_male?'male':'female'}")=message.name + ': ' + message.content
+  
+  pre #{JSON.stringify(messages)}
