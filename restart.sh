@@ -1,7 +1,7 @@
 #!/bin/bash
 
-name=mawaru.net
-port=3002
+name=chat.mawaru.net
+port=4000
 
 echo $name $port
 forever stop $name
