@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  form(action="/" method="post")
+    input(type="text" name="message_content")
+    input(type="submit" value="送信")
+  
+  ul
+    each message in messages 
+      li=message
