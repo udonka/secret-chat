@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 sec-cha
+  
+
+  .messageForm
+    form(action="#{post_url}" method="post")
+      input(type="hidden" name="name"    value="#{name}")
+      input(type="hidden" name="is_male" value="#{is_male}")
+      input.messageForm__text(type="text"   name="content")
+      input.messageForm__submit(type="submit" value="送信/更新")
+  
+  div.chatLines
+    each message in messages 
+      div.chatLines__line(class="#{message.is_male?'--male':'--female'}")=message.name + ': ' + message.content
+  

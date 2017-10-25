@@ -1,23 +1,51 @@
 var express = require('express');
 var router = express.Router();
 
+const chatrooms = {
+  //_id
+  room_name:String,
+  members:[{
+    name:String,
+    is_male:Boolean
+  }],
+  messages:[{
+    content:String,
+    date:Date
+  }]
+};
 
 var messages = [
     {name:"チャットマスター",is_male:true,content:"チャットがリセットされました。"}
 ];
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {
+  res.render('index', {});
+
+});
+
+router.post('/rooms/enter', function(req, res, next) {
+  var room_name = req.body.room_name;
+
+
+  if(room_name=="riri-masa"){
+    res.redirect('/rooms/riri-masa');
+  }
+
+  res.redirect('/');
+});
+
+/* GET home page. */
+router.get('/rooms/riri-masa', function(req, res, next) {
+  res.render('chatroom', {
     title: 'Express' ,
     messages:messages.slice().reverse(),
     name:"りり",
-    is_male:false
+    is_male:false,
+    post_url:'/rooms/riri-masa'
   });
 });
 
-router.post('/', function(req, res, next) {
-  
+router.post('/rooms/riri-masa/', function(req, res, next) {
   const name = req.body.name;
   const is_male = req.body.is_male == "true";
   const content = req.body.content;
@@ -29,18 +57,19 @@ router.post('/', function(req, res, next) {
   }
 
   if(is_male){
-    return res.redirect("/masa");
+    return res.redirect("/rooms/riri-masa/masa");
   }
   
-  res.redirect("/");
+  res.redirect("/rooms/riri-masa/");
 });
 
-router.get('/masa', function(req, res, next) {
-  res.render('index', {
+router.get('/rooms/riri-masa/masa', function(req, res, next) {
+  res.render('chatroom', {
     title: 'Express' ,
     messages:messages.slice().reverse(),
     name:"まさ",
-    is_male:true
+    is_male:true,
+    post_url:'/rooms/riri-masa'
   });
 });
 

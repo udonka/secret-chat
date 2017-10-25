@@ -1,0 +1,17 @@
+
+.chatLines{
+}
+
+.chatLines__line{
+  border-bottom:solid 2px;
+  margin-bottom:0.2em;
+}
+
+.chatLines__line.--male{
+  border-bottom-color:skyblue
+}
+
+.chatLines__line.--female{
+  border-bottom-color:pink
+}
+
