@@ -13,5 +13,5 @@ block content
   
   div.chatLines
     each message in messages 
-      div.chatLines__line(class="#{message.is_male?'--male':'--female'}")=message.name + ': ' + message.content
+      div.chatLines__line(class="#{message.user_is_male ? '--male':'--female'}")=message.user_name + ': ' + message.content
   
